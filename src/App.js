@@ -8,11 +8,11 @@ import ChangePasswordForm from "./components/authForm.js/ChangePasswordForm";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import SubCategory from "./components/SubCategory";
+import Footer from "./components/Footer";
 
 import {
   BrowserRouter as Router,
   Route,
-  Link,
   Redirect
 } from "react-router-dom";
 class App extends Component {
@@ -100,6 +100,8 @@ class App extends Component {
             )}
           </div>
         </div>
+
+        <Route path ="/" component={Footer}/>
       </Router>
     );
   }
