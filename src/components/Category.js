@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { Card, Button } from "react-bootstrap";
-import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 class Category extends Component {
   render() {
+    // if (this.state.subCategory) return <Redirect to="/sub-category" />;
+
     return (
       <div className="container">
         <div
@@ -20,16 +23,9 @@ class Category extends Component {
                 Some quick example text to build on the card title and make up
                 the bulk of the card's content.
               </Card.Text>
-              <Button
-                variant="primary"
-                onClick={() => {
-                  console.log("hii");
-
-                  return <Redirect to="/sub-category" />;
-                }}
-              >
-                Go somewhere
-              </Button>
+              <Link className="btn btn-primary" to="/individual">
+                Individual
+              </Link>
             </Card.Body>
           </Card>
           <Card style={{ width: "18rem", marginLeft: "50px" }}>
