@@ -1,0 +1,9 @@
+.flex {
+    
+    background: red;
+}
+
+.col-6 {
+    height: 200px;
+    width: 300 px;
+}
