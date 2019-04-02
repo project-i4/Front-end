@@ -25,7 +25,8 @@ class SignupForm extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        if (data.error) this.setState({ err: data.error });
+        if (data.status > 299)
+          this.setState({ err: data.message });
         else {
           setUser(data);
           this.props.onSignin();
@@ -61,6 +62,7 @@ class SignupForm extends Component {
               className="form-control"
               onChange={this.handleChange}
             />
+           
             <label>Password</label>
             <input
               name="password"
@@ -76,6 +78,23 @@ class SignupForm extends Component {
               type="password"
               onChange={this.handleChange}
             />
+            
+            <label>Name</label>
+            <input
+              name="name"
+              className="form-control"
+              type="text"
+              onChange={this.handleChange}
+            />
+          
+            <label>Address</label>
+            <input
+              name="address"
+              className="form-control"
+              type="text"
+              onChange={this.handleChange}
+            />
+            
           </div>
 
           <button type="submit" className="btn btn-primary">
