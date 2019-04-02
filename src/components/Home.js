@@ -5,6 +5,9 @@ const Home = () => {
   return (
     <Router>
       <Route path="/profile" component={Profile} />
+      {/* <Link to={`${match.url}/rendering`}>Rendering with React</Link> */}
+
+      {/* <Link to="/profile">Profile</Link> */}
     </Router>
   );
 };
