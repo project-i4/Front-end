@@ -86,14 +86,6 @@ class SignupForm extends Component {
               onChange={this.handleChange}
             />
 
-            <label>Name</label>
-            <input
-              name="name"
-              className="form-control"
-              type="text"
-              onChange={this.handleChange}
-            />
-
             <label>Address</label>
             <input
               name="address"
