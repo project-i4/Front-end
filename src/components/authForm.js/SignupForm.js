@@ -6,7 +6,9 @@ class SignupForm extends Component {
     formData: {
       email: null,
       password: null,
-      password_confirmation: null
+      password_confirmation: null,
+      name: null,
+      address2: null
     },
     err: null
   };
@@ -25,8 +27,7 @@ class SignupForm extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        if (data.status > 299)
-          this.setState({ err: data.message });
+        if (data.status > 299) this.setState({ err: data.message });
         else {
           setUser(data);
           this.props.onSignin();
@@ -56,13 +57,19 @@ class SignupForm extends Component {
         )}
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
+            <label>Name </label>
+            <input
+              name="name"
+              className="form-control"
+              onChange={this.handleChange}
+            />
             <label>email </label>
             <input
               name="email"
               className="form-control"
               onChange={this.handleChange}
             />
-           
+
             <label>Password</label>
             <input
               name="password"
@@ -78,15 +85,7 @@ class SignupForm extends Component {
               type="password"
               onChange={this.handleChange}
             />
-            
-            <label>Name</label>
-            <input
-              name="name"
-              className="form-control"
-              type="text"
-              onChange={this.handleChange}
-            />
-          
+
             <label>Address</label>
             <input
               name="address"
@@ -94,7 +93,6 @@ class SignupForm extends Component {
               type="text"
               onChange={this.handleChange}
             />
-            
           </div>
 
           <button type="submit" className="btn btn-primary">

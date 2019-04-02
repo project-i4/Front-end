@@ -1,12 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const authenticatedOptions = (changeActivePage, onSignout) => (
   <React.Fragment>
-    <li
-      className="nav-item"
-      onClick={() => changeActivePage("change-password")}
-    >
-      <div className="nav-link">Change Password</div>
+    <li className="nav-item">
+      <div className="nav-link">
+        <Link to="/change-password">Change Password</Link>
+      </div>
     </li>
     <li className="nav-item" onClick={() => onSignout()}>
       <div className="nav-link">Sign Out</div>
@@ -16,19 +16,25 @@ const authenticatedOptions = (changeActivePage, onSignout) => (
 
 const unauthenticatedOptions = changeActivePage => (
   <React.Fragment>
-    <li className="nav-item" onClick={() => changeActivePage("sign-in")}>
-      <div className="nav-link">Sign In</div>
+    <li className="nav-item">
+      <div className="nav-link">
+        <Link to="/sign-in">Sign In</Link>
+      </div>
     </li>
-    <li className="nav-item" onClick={() => changeActivePage("sign-up")}>
-      <div className="nav-link">Sign Up</div>
+    <li className="nav-item">
+      <div className="nav-link">
+        <Link to="/sign-up">Sign Up</Link>
+      </div>
     </li>
   </React.Fragment>
 );
 
 const alwaysOptions = changeActivePage => (
   <React.Fragment>
-    <li className="nav-item" onClick={() => changeActivePage("home")}>
-      <div className="nav-link">Home</div>
+    <li className="nav-item">
+      <div className="nav-link">
+        <Link to="/">Home</Link>
+      </div>
     </li>
   </React.Fragment>
 );
