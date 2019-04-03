@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { get } from 'https';
+import apiUrl from '../apiConfig';
 
 
 
@@ -18,7 +20,7 @@ state = {
     
     render(){
 
-    
+
    return (
 
     <section id="team" class="pb-5">
