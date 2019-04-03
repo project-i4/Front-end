@@ -16,6 +16,8 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
+import Provider from "./components/Provider";
+import CreateBusiness from "./components/CreateBusiness";
 class App extends Component {
   state = {
     user: null,
@@ -84,7 +86,12 @@ class App extends Component {
           <Route exact path="/individual" component={Individual} />
 
           {/* Individual Sub-catigory Route */}
-          <Route path="/individual/:subCat" component={SubCatigory} />
+          <Route exact path="/individual/:subCat" component={Provider} />
+          <Route
+            exact
+            path="/individual/:subCat/:createBusiness"
+            component={CreateBusiness}
+          />
 
           {/* Sign In Route */}
           <Route
