@@ -7,14 +7,18 @@ import SignupForm from "./components/authForm.js/SignupForm";
 import ChangePasswordForm from "./components/authForm.js/ChangePasswordForm";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
-import SubCategory from "./components/SubCategory";
 import Footer from "./components/Footer";
+import Individual from "./components/Individual";
+import SubCatigory from "./components/SubCatigory";
+
 
 import {
   BrowserRouter as Router,
   Route,
   Redirect
 } from "react-router-dom";
+import Provider from "./components/Provider";
+import CreateBusiness from "./components/CreateBusiness";
 class App extends Component {
   state = {
     user: null,
@@ -50,59 +54,76 @@ class App extends Component {
     this.setState({ user: null });
     Signout();
   };
+
   render() {
     const { user, activePage, redirect } = this.state;
     return (
-      <Router>
-        <div>
+      <div>
+        <Route
+          path="/"
+          component={() => {
+            return (
+              <Nav
+                user={user}
+                changeActivePage={this.changeActivePage}
+                onSignout={this.onSignout}
+              />
+            );
+          }}
+        />
+
+        <div className="container">
+          {/* {activePage === "home" ? <Home /> : ""} */}
+          {/* Home Route */}
           <Route
+            exact
             path="/"
             component={() => {
-              return (
-                <Nav
-                  user={user}
-                  changeActivePage={this.changeActivePage}
-                  onSignout={this.onSignout}
-                />
-              );
+              return <Home />;
             }}
           />
 
-          <div className="container">
-            {/* {activePage === "home" ? <Home /> : ""} */}
-            {/* Home Route */}
-            <Route exact path="/" component={Home} />
+          {/* Individual Route */}
+          <Route exact path="/individual" component={Individual} />
 
-            <Route path="/sub-category" component={SubCategory} />
+          {/* Individual Sub-catigory Route */}
+          <Route exact path="/individual/:subCat" component={Provider} />
+          <Route
+            exact
+            path="/individual/:subCat/:createBusiness"
+            component={CreateBusiness}
+          />
 
-            {/* Sign In Route */}
-            <Route
-              path="/sign-in"
-              component={() => <SigninForm onSignin={this.onSignin} />}
-            />
-            {/* Sign Up Route */}
-            <Route
-              path="/sign-up"
-              component={() => <SignupForm onSignin={this.onSignin} />}
-            />
-            {/* Change Password Route */}
-            <Route path="/change-password" component={ChangePasswordForm} />
-
-            {/* Profile Route */}
-            <Route path="/profile" component={Profile} />
-            {activePage === "profile" && redirect ? (
-              <div>
-                {this.setRedirect(false)}
-                <Redirect to="/profile" />
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
+          {/* Sign In Route */}
+          <Route
+            path="/sign-in"
+            component={() => <SigninForm onSignin={this.onSignin} />}
+          />
+          {/* Sign Up Route */}
+          <Route
+            path="/sign-up"
+            component={() => <SignupForm onSignin={this.onSignin} />}
+          />
+          {/* Change Password Route */}
+          <Route path="/change-password" component={ChangePasswordForm} />
+          {/* Profile Route */}
+          <Route path="/profile" component={Profile} />
+          {activePage === "profile" && redirect ? (
+            <div>
+              {this.setRedirect(false)}
+              <Redirect to="/profile" />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
 
+
         <Route path ="/" component={Footer}/>
-      </Router>
+    
+
+      </div>
+
     );
   }
 }

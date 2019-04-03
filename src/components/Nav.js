@@ -8,6 +8,11 @@ const authenticatedOptions = (changeActivePage, onSignout) => (
         <Link to="/change-password">Change Password</Link>
       </div>
     </li>
+    <li className="nav-item">
+      <div className="nav-link">
+        <Link to="/profile">Profile</Link>
+      </div>
+    </li>
     <li className="nav-item" onClick={() => onSignout()}>
       <div className="nav-link">Sign Out</div>
     </li>
