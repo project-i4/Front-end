@@ -1,14 +1,12 @@
-
 import React, { Component } from "react";
 import apiUrl from "../apiConfig";
 import CreateBusiness from "./CreateBusiness";
 import { Link } from "react-router-dom";
-
 class Provider extends Component {
   state = {
     data: []
   };
-  subCat = this.props.match.params;
+    // subCat = this.props.match.params.subCat;
   componentDidMount() {
     console.log("heeerreeeeeeeee ");
 
@@ -31,12 +29,10 @@ class Provider extends Component {
       .catch(e => console.log("this is the errrrorrr", e, url));
   }
 
-
   render() {
     let providers = this.state.data.map(({ businesses }) => {
       let provider = businesses[0];
       console.log("inside map", provider.name);
-
 
       return (
         <div class="col-xs-12 col-sm-6 col-md-4">

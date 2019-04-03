@@ -36,7 +36,6 @@ class CreateBusiness extends Component {
           res.json();
           this.setState({ redirect: true });
         })
-
         .catch(e => console.log(e));
   };
 

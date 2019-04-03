@@ -27,12 +27,7 @@ class SignupForm extends Component {
     })
       .then(res => res.json())
       .then(data => {
-<<<<<<< Updated upstream
         if (data.status > 299) this.setState({ err: data.message });
-=======
-        if (data.status > 299) 
-          this.setState({ err: data.message});
->>>>>>> Stashed changes
         else {
           setUser(data);
           this.props.onSignin();
@@ -91,25 +86,11 @@ class SignupForm extends Component {
               onChange={this.handleChange}
             />
 
-<<<<<<< Updated upstream
             <label>Address</label>
             <input
               name="address"
               className="form-control"
               type="text"
-=======
-            <label>Name</label>
-            <input
-              name="name"
-              className="form-control"
-              onChange={this.handleChange}
-            />
-
-            <label>Adrress</label>
-            <input
-              name="address"
-              className="form-control"
->>>>>>> Stashed changes
               onChange={this.handleChange}
             />
           </div>
