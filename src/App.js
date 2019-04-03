@@ -7,13 +7,14 @@ import SignupForm from "./components/authForm.js/SignupForm";
 import ChangePasswordForm from "./components/authForm.js/ChangePasswordForm";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
+import Footer from "./components/Footer";
 import Individual from "./components/Individual";
 import SubCatigory from "./components/SubCatigory";
+
 
 import {
   BrowserRouter as Router,
   Route,
-  Link,
   Redirect
 } from "react-router-dom";
 import Provider from "./components/Provider";
@@ -116,7 +117,13 @@ class App extends Component {
             ""
           )}
         </div>
+
+
+        <Route path ="/" component={Footer}/>
+    
+
       </div>
+
     );
   }
 }

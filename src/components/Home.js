@@ -1,3 +1,4 @@
+
 import React, { Component } from "react";
 import Profile from "./Profile";
 import Category from "./Category";
@@ -7,5 +8,6 @@ class Home extends Component {
     return <Route path="/" component={Category} />;
   }
 }
+
 
 export default Home;
