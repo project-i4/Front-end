@@ -5,12 +5,17 @@ const authenticatedOptions = (changeActivePage, onSignout) => (
   <React.Fragment>
     <li className="nav-item">
       <div className="nav-link">
-        <Link to="/change-password">Change Password</Link>
+        <Link to="/profile">Profile</Link>
       </div>
     </li>
     <li className="nav-item">
       <div className="nav-link">
-        <Link to="/profile">Profile</Link>
+        <Link to="/My_businesses">My Businesses</Link>
+      </div>
+    </li>
+    <li className="nav-item">
+      <div className="nav-link">
+        <Link to="/change-password">Change Password</Link>
       </div>
     </li>
     <li className="nav-item" onClick={() => onSignout()}>
@@ -21,13 +26,11 @@ const authenticatedOptions = (changeActivePage, onSignout) => (
 
 const profile = changeActivePage => (
   <React.Fragment>
-  <li className="nav-item" onClick={() => changeActivePage("profile")}>
-    <div className="nav-link">Profile</div>
-  </li>
-  
-</React.Fragment>
+    <li className="nav-item" onClick={() => changeActivePage("profile")}>
+      <div className="nav-link">Profile</div>
+    </li>
+  </React.Fragment>
 );
-
 
 const unauthenticatedOptions = changeActivePage => (
   <React.Fragment>
@@ -56,7 +59,7 @@ const alwaysOptions = changeActivePage => (
 
 const Nav = ({ user, changeActivePage, onSignout }) => (
   <nav className="navbar navbar-expand-lg navbar-light bg-light">
-    <div className="navbar-brand"></div>
+    <div className="navbar-brand" />
     <button
       className="navbar-toggler"
       type="button"

@@ -1,39 +1,63 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import apiUrl from "../apiConfig";
-import CreateBusiness from "./CreateBusiness";
+import { getUser } from "../services/AuthService";
+import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-class Provider extends Component {
+
+class MyBusinesses extends Component {
   state = {
-    data: []
+    business: []
   };
-  // subCat = this.props.match.params.subCat;
   componentDidMount() {
     console.log("heeerreeeeeeeee ");
+    const user = getUser();
+    console.log("user in mybusi..", user);
 
-    let url = `${apiUrl}/individual/${this.props.match.params.subCat}`;
+    let url = `${apiUrl}/My_businesses/${user.id}`;
     // let url = `${apiUrl}/individual/Contractor`;
     console.log(url);
 
     fetch(url)
       .then(res => res.json())
-      .then(data => {
-        this.setState({ data });
+      .then(business => {
+        this.setState({
+          business: business.businesses
+        });
         console.log(
           "qazwsx edcrfv",
           "this is url: ",
           url,
           "and this data: ",
-          data
+          business
         );
       })
       .catch(e => console.log("this is the errrrorrr", e, url));
   }
 
-  render() {
-    let providers = this.state.data.map(({ businesses }) => {
-      let provider = businesses[0];
-      console.log("inside map", provider.name);
+  deleteBusniess = id => {
+    let url = `${apiUrl}/My_businesses/delete/${id}`;
 
+    fetch(url, {
+      mode: "cors",
+      credentials: "include",
+      method: "DELETE"
+    })
+      .then(response => {
+        response.json();
+      })
+
+      .then(data => {
+        console.log("hsssssere", data);
+      })
+      .catch(e => console.log(e));
+    this.componentDidMount();
+  };
+
+  render() {
+    const user = getUser();
+    console.log("user in mybusi..", user);
+
+    let businessCard = this.state.business.map(card => {
       return (
         <div class="col-xs-12 col-sm-6 col-md-4">
           <div
@@ -51,8 +75,8 @@ class Provider extends Component {
                         alt="card image"
                       />
                     </p>
-                    <h4 class="card-title">{provider.name}</h4>
-                    <p class="card-text">{provider.experience}</p>
+                    <h4 class="card-title">{card.name}</h4>
+                    <p class="card-text">{card.experience}</p>
                     <a href="#" class="btn btn-primary btn-sm">
                       <i class="fa fa-plus" />
                     </a>
@@ -62,11 +86,23 @@ class Provider extends Component {
               <div class="backside">
                 <div class="card">
                   <div class="card-body text-center mt-4">
-                    <h4 class="card-title">{provider.name}</h4>
+                    <h4 class="card-title">{card.name}</h4>
                     <p class="card-text">
-                      {provider.experience},
+                      {card.experience},
                       ...............................................................
                     </p>
+                    <Link
+                    className="btn btn-warning mr-2" params={{ id: card.id, name: card.name }}
+                      to={`/My_businesses/edit/${card.id}`}
+                    >
+                      Edit
+                    </Link>
+                    <button
+                      onClick={() => this.deleteBusniess(card.id)}
+                      className="btn btn-danger"
+                    >
+                      Delete
+                    </button>
                     <ul class="list-inline">
                       <li class="list-inline-item">
                         <a
@@ -113,23 +149,8 @@ class Provider extends Component {
         </div>
       );
     });
-    const { subCat } = this.props.match.params;
-
-    return (
-      <section id="team" class="pb-5">
-        <div class="container">
-          <h5 class="section-title h1">{subCat + "s"}</h5>
-          <Link
-            to={`/individual/${subCat}/createBusiness`}
-            component={CreateBusiness}
-          >
-            Join us as {subCat}
-          </Link>
-          <div class="row">{providers}</div>
-        </div>
-      </section>
-    );
+    return <div>{businessCard}</div>;
   }
 }
 
-export default Provider;
+export default MyBusinesses;

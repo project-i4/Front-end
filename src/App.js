@@ -9,16 +9,12 @@ import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Footer from "./components/Footer";
 import Individual from "./components/Individual";
-import SubCatigory from "./components/SubCatigory";
 
-
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Provider from "./components/Provider";
 import CreateBusiness from "./components/CreateBusiness";
+import MyBusinesses from "./components/MyBusinesses";
+import EditBusiness from "./components/editeBusiness";
 class App extends Component {
   state = {
     user: null,
@@ -83,6 +79,15 @@ class App extends Component {
             }}
           />
 
+          {/* MyBusinesses Route */}
+          <Route exact path="/My_businesses" component={MyBusinesses} />
+          {/* EditBusinesses Route */}
+          <Route
+            exact
+            path="/My_businesses/edit/:id"
+            component={EditBusiness}
+          />
+
           {/* Individual Route */}
           <Route exact path="/individual" component={Individual} />
 
@@ -118,12 +123,8 @@ class App extends Component {
           )}
         </div>
 
-
-        <Route path ="/" component={Footer}/>
-    
-
+        <Route path="/" component={Footer} />
       </div>
-
     );
   }
 }

@@ -61,7 +61,7 @@ class CreateBusiness extends Component {
         )}
         <form onSubmit={this.handleCreate}>
           <div className="form-group">
-            <label>Name </label>
+            <label>Business Name </label>
             <input
               name="name"
               className="form-control"
